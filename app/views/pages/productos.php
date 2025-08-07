@@ -9,51 +9,47 @@
         <?php 
             //require_once '../includes/cn_producto.php';
             require_once '../../models/conexion.php';
-            $result_total = mysqli_query($cn, "SELECT COUNT(*) AS total FROM producto");
-            $por_pagina = 5;
-            $pagina = isset($_POST['pagina']) ? (int)$_POST['pagina'] : 1;
-            $inicio = ($pagina - 1) * $por_pagina;
-            $result_head = mysqli_query($cn,"SELECT id_producto,nomb_producto,descripcion_producto,stock,stock_inicial,precio_unitario FROM producto LIMIT $inicio, $por_pagina");
-
-            $result = mysqli_query($cn,"SELECT id_producto,nomb_producto,descripcion_producto,stock,stock_inicial,precio_unitario FROM producto LIMIT $inicio, $por_pagina");
-
-            $fila_total = mysqli_fetch_assoc($result_total);
-            $total_registros = $fila_total['total'];
-            $total_paginas = ceil($total_registros / $por_pagina);
-            $index = 0;
+            if (isset($_POST['limpiar'])) {
+                $_POST = []; // Vacía todo
+                $buscar_id = $buscar_nombre = $filtro_stock = $fecha = '';
+                $pagina = 1;
+            }
+            include_once '../includes/productos_controller.php';
          ?>
         <div class="productos-page">
             <section class="head-producto">
                 <h1>Productos</h1>
             </section>
             <section class="filtros-producto">
-                <div class="buscadores1">
-                    <div class="buscador-id">
-                        <input type="text" placeholder="Buscar id...">
-                        <button type="submit" class="btn-buscar-producto">Buscar</button>
+                <form method="POST" action="" class="form-filtros-producto">
+                    <div class="buscadores1">
+                        <div class="buscador-id">
+                            <input type="text" name="buscar_id" placeholder="Buscar id..." value="<?= htmlspecialchars($buscar_id) ?>">
+                            <button type="submit" class="btn-buscar-producto">Buscar</button>
+                        </div>
+                        <div class="buscador-nombre">
+                            <input type="text" name="buscar_nombre" placeholder="Buscar productos..." value="<?= htmlspecialchars($buscar_nombre) ?>">
+                            <button type="submit" class="btn-buscar-producto">Buscar</button>
+                        </div>
                     </div>
-                    <div class="buscador-nombre">
-                        <input type="text" placeholder="Buscar productos...">
-                        <button type="submit" class="btn-buscar-producto">Buscar</button>
+                    <div class="buscadores2">
+                        <div class="stock">
+                            <label for="stock" class="label-stock">Stock:</label>
+                            <select name="filtro_stock" id="stock" onchange="this.form.submit()">
+                                <option value="todos"  <?= $filtro_stock == 'todos' ? 'selected' : '' ?>>Todos</option>
+                                <option value="disponibles" <?= $filtro_stock == 'disponibles' ? 'selected' : '' ?>>Disponibles</option>
+                                <option value="agotados" <?= $filtro_stock == 'agotados' ? 'selected' : '' ?>>Agotados</option>
+                            </select>
+                        </div>
+                        <div class="fecha">
+                            <label for="fecha" class="label-fecha">Fecha:</label>
+                            <input type="date" id="fecha" name="fecha">
+                        </div>
                     </div>
-                </div>
-                <div class="buscadores2">
-                    <div class="stock">
-                        <label for="stock" class="label-stock">Stock:</label>
-                        <select name="stock" id="stock">
-                            <option value="todos">Todos</option>
-                            <option value="disponibles">Disponibles</option>
-                            <option value="agotados">Agotados</option>
-                        </select>
+                    <div class="limpiar-filtros">
+                        <button type="submit" name="limpiar" value="1" class="btn-limpiar-filtros">Limpiar Filtros</button>
                     </div>
-                    <div class="fecha">
-                        <label for="fecha" class="label-fecha">Fecha:</label>
-                        <input type="date" id="fecha" name="fecha">
-                    </div>
-                </div>
-                <div class="limpiar-filtros">
-                    <button type="button" class="btn-limpiar-filtros">Limpiar Filtros</button>
-                </div>
+                </form>
             </section>
             <section class="mantenedor-producto">
                 <div class="btn-crear-producto">
@@ -82,32 +78,7 @@
                     </tbody>
                 </table>
             </section>
-            <div class="pagination">
-                <p>Pagina Nº <?= $pagina ?> de <?= $total_paginas ?></p>
-                <?php if ($pagina > 1): ?>
-                    <form method="post" style="display:inline;">
-                        <input type="hidden" name="action" value="productos">
-                        <input type="hidden" name="pagina" value="<?= $pagina - 1 ?>">
-                        <button type="submit">« Anterior</button>
-                    </form>
-                <?php endif; ?>
-
-                <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-                    <form method="post" style="display:inline;">
-                        <input type="hidden" name="action" value="productos">
-                        <input type="hidden" name="pagina" value="<?= $i ?>">
-                        <button type="submit" <?= $i == $pagina ? 'style="font-weight:bold;"' : '' ?>><?= $i ?></button>
-                    </form>
-                <?php endfor; ?>
-
-                <?php if ($pagina < $total_paginas): ?>
-                    <form method="post" style="display:inline;">
-                        <input type="hidden" name="action" value="productos">
-                        <input type="hidden" name="pagina" value="<?= $pagina + 1 ?>">
-                        <button type="submit">Siguiente »</button>
-                    </form>
-                <?php endif; ?>
-            </div>
+            <?php include_once '../includes/paginacion_productos.php'; ?>
         </div>
         <?php mysqli_close($cn); ?>
     </body>

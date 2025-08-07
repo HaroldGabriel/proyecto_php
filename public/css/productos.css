@@ -20,28 +20,33 @@
         flex-direction: row;
         justify-content:space-around;
         align-items: center;
+        .form-filtros-producto{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            .buscadores1{
+                width: 30%;
+                align-items: center;
 
-        .buscadores1{
-            width: 30%;
-            align-items: center;
+                input[type="text"]{
+                    width: 80%;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                }
+                .btn-buscar-producto {
+                    margin-top: 10px;
+                    padding: 10px 15px;
+                    border: none;
+                    border-radius: 4px;
+                    background-color: #007bff;
+                    color: white;
+                    cursor: pointer;
 
-            input[type="text"]{
-                width: 80%;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
-            .btn-buscar-producto {
-                margin-top: 10px;
-                padding: 10px 15px;
-                border: none;
-                border-radius: 4px;
-                background-color: #007bff;
-                color: white;
-                cursor: pointer;
-
-                &:hover {
-                    background-color: green;
+                    &:hover {
+                        background-color: green;
+                    }
                 }
             }
         }
