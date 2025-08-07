@@ -1,0 +1,32 @@
+.mantenimiento-producto-page{
+    width: 100%;
+    height: 100%;
+    .head-page-mantenimiento-producto{
+        background-color: #f8f9fa;
+        padding: 20px;
+        text-align: center;
+        height: 10%;
+
+        .form-volver-productos{
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            height: 100%;
+        }
+    }
+
+    .main-page-mantenimiento-producto{
+        height: 90%;
+        width: 100%;
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 20px;
+        .form-mantenimiento-producto{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 20px;
+        }
+    }
+}

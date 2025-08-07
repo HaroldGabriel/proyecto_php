@@ -1,0 +1,27 @@
+<canvas id="barChartHorizontal"></canvas>
+<script>
+    const ctx = document.getElementById('barChartHorizontal');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Martillo', 'Clavos', 'Destornillador', 'Taladro', 'Sierra'],
+        datasets: [{
+          label: 'Cantidad Vendida',
+          data: [50, 80, 40, 30, 65],
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        indexAxis: 'y', // Esto lo hace horizontal
+        responsive: true,
+        scales: {
+          x: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+</script>

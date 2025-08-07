@@ -1,0 +1,64 @@
+.reportes-pages{
+    width: 100%;
+    height: 100%;
+
+    .head-reporte{
+        width: 100%;
+        height: 15%;
+    }
+    .main-page-ventas{
+        width: 100%;
+        height: 85%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 
+        "table grafico1"
+        "table grafico2";
+
+        .main-table-ventas{
+            grid-area: table;
+            width: 100%;
+            height: 40%;
+            .table-ventas{
+                width: 100%;
+                
+                border-collapse: collapse;
+
+                th, td {
+                    padding: 12px 15px;
+                    border: 1px solid #ddd;
+
+                    &:first-child {
+                        width: 150px;
+                    }
+                }
+
+                th {
+                    background-color: #f4f4f4;
+                }
+            }
+            
+        }
+    }
+    .grafico1{
+        grid-area: grafico1;
+        width: 100%;
+        height: 100%;
+
+        #BarChartVentas{
+            width: 70%;
+            height: 100%;
+        }
+    }
+    .grafico2{
+        grid-area: grafico2;
+        width: 100%;
+        height: 100%;
+
+        #barChartHorizontal{
+            width: 80% !important;
+            height: 100%;
+        }
+    }
+}

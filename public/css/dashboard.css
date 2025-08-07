@@ -1,0 +1,39 @@
+.dashboard-page{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "chart1 chart2"
+        "table table";
+    gap: 10px;
+
+    .area-chart{
+        grid-area: chart1;
+    }
+    .bar-chart{
+        grid-area: chart2;
+    }
+    .area-table{
+        grid-area: table;
+        width: 100%;
+        .table-dashboard{
+            width: 100%;
+            border-collapse: collapse;
+
+            th, td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+
+                &:first-child {
+                    width: 150px;
+                }
+            }
+
+            th {
+                background-color: #f4f4f4;
+            }
+        }
+    }
+}
