@@ -33,7 +33,7 @@
         <section class="container">
             <aside class="menu-aside">
                 <div class="main-menu-aside">
-                    <form action="" method="post" class="menu-form">
+                    <form action="" method="get" class="menu-form">
                         <input type="submit" class="menu-item" value="dashboard" name="action">
                         <input type="submit" class="menu-item" value="productos" name="action">
                         <input type="submit" class="menu-item" value="ventas" name="action">
@@ -44,8 +44,8 @@
             <div class="content-page">
                 <div class="main-content-page">
                     <?php
-                        if (isset($_POST['action'])) {
-                            switch ($_POST['action']){
+                        if (isset($_GET['action'])) {
+                            switch ($_GET['action']){
                                 case 'dashboard':
                                     include_once '../pages/dashboard.php';
                                     break;

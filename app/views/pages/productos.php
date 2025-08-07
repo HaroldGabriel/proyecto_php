@@ -57,7 +57,7 @@
             </section>
             <section class="mantenedor-producto">
                 <div class="btn-crear-producto">
-                    <form action="" method="post">
+                    <form action="" method="get">
                         <input type="submit" class="btn-crear" value="Crear Producto" name="action">
                     </form>
                 </div>

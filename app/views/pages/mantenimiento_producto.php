@@ -18,7 +18,7 @@
     ?>
     <div class="mantenimiento-producto-page">
         <section class="head-page-mantenimiento-producto">
-            <form method="post" class="form-volver-productos">
+            <form method="get" class="form-volver-productos">
                 <button type="submit" name="action" value="productos" class="btn-volver">← Volver a Productos</button>
             </form>
         </section>

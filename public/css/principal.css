@@ -150,7 +150,7 @@ main{
         width: 85%;
         height: 100%;
         background-color: #ffffff;
-        
+        overflow-y: auto; 
 
         .main-content-page{
             width: 100%;
@@ -160,8 +160,9 @@ main{
                 width: 100%;
                 height: auto;
                 object-fit: cover;
-                border-radius: 10px;}
-            /* GRID */          
+                border-radius: 10px;
+            }
+               
         }
     }
 
@@ -172,11 +173,11 @@ main{
 -----------------------------------------*/
 footer{
     width: 100%;
-    height: 100px;
     background-color: gray;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 1.2rem;
+    padding: 30px 0;
 }
